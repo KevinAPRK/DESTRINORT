@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Productos\Schemas;
 
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
@@ -15,9 +16,12 @@ class ProductoForm
         return $schema
             ->components([
                 TextInput::make('nombre')
-                    ->required(),
+                    ->required()
+                    ->live(onBlur: true)
+                    ->afterStateUpdated(fn ($state, callable $set) => $set('slug', \Illuminate\Support\Str::slug($state))),
                 TextInput::make('slug')
-                    ->required(),
+                    ->required()
+                    ->unique(ignoreRecord: true),
                 Textarea::make('descripcion_corta')
                     ->columnSpanFull(),
                 Textarea::make('descripcion_larga')
@@ -28,12 +32,21 @@ class ProductoForm
                 TextInput::make('precio_oferta')
                     ->numeric(),
                 Select::make('marca_id')
-                    ->relationship('marca', 'id')
+                    ->relationship('marca', 'nombre')
+                    ->searchable()
+                    ->preload()
                     ->required(),
                 Select::make('categoria_id')
-                    ->relationship('categoria', 'id')
+                    ->relationship('categoria', 'nombre')
+                    ->searchable()
+                    ->preload()
                     ->required(),
-                TextInput::make('imagen_principal'),
+                FileUpload::make('imagen_principal')
+                    ->image()
+                    ->directory('productos')
+                    ->maxSize(2048)
+                    ->imageEditor()
+                    ->columnSpanFull(),
                 TextInput::make('presentacion'),
                 TextInput::make('stock')
                     ->required()

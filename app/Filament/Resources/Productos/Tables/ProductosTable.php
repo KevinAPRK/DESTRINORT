@@ -7,6 +7,7 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -16,43 +17,49 @@ class ProductosTable
     {
         return $table
             ->columns([
+                ImageColumn::make('imagen_principal')
+                    ->label('Imagen')
+                    ->circular()
+                    ->defaultImageUrl(url('/images/placeholder.png')),
                 TextColumn::make('nombre')
-                    ->searchable(),
-                TextColumn::make('slug')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('marca.nombre')
+                    ->label('Marca')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('categoria.nombre')
+                    ->label('Categoría')
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('precio')
-                    ->numeric()
+                    ->money('PEN')
                     ->sortable(),
                 TextColumn::make('precio_oferta')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('marca.id')
-                    ->searchable(),
-                TextColumn::make('categoria.id')
-                    ->searchable(),
-                TextColumn::make('imagen_principal')
-                    ->searchable(),
+                    ->money('PEN')
+                    ->sortable()
+                    ->toggleable(),
                 TextColumn::make('presentacion')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(),
                 TextColumn::make('stock')
                     ->numeric()
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(),
                 IconColumn::make('disponible')
-                    ->boolean(),
+                    ->boolean()
+                    ->toggleable(),
                 IconColumn::make('destacado')
-                    ->boolean(),
+                    ->boolean()
+                    ->label('★ Destacado')
+                    ->toggleable(),
                 IconColumn::make('activo')
-                    ->boolean(),
-                TextColumn::make('orden')
-                    ->numeric()
-                    ->sortable(),
+                    ->boolean()
+                    ->toggleable(),
                 TextColumn::make('vistas')
                     ->numeric()
-                    ->sortable(),
-                TextColumn::make('seo_titulo')
-                    ->searchable(),
-                TextColumn::make('seo_descripcion')
-                    ->searchable(),
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
