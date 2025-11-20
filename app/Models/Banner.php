@@ -1,0 +1,26 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Banner extends Model
+{
+    protected $table = 'banners';
+
+    protected $fillable = [
+        'titulo',
+        'subtitulo',
+        'imagen',
+        'texto_boton',
+        'url_boton',
+        'tipo',
+        'activo',
+        'orden',
+    ];
+
+    protected $casts = [
+        'activo' => 'boolean',
+        'orden' => 'integer',
+    ];
+}
