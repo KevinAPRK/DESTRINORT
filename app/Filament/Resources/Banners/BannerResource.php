@@ -12,6 +12,7 @@ use App\Filament\Resources\Banners\Tables\BannersTable;
 use App\Models\Banner;
 use BackedEnum;
 use Filament\Resources\Resource;
+use UnitEnum;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
@@ -30,7 +31,7 @@ class BannerResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Banners';
 
-    protected static ?string $navigationGroup = 'Contenido';
+    protected static string|UnitEnum|null $navigationGroup = 'Contenido';
 
     protected static ?int $navigationSort = 3;
 

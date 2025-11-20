@@ -12,6 +12,7 @@ use App\Filament\Resources\Configuracions\Tables\ConfiguracionsTable;
 use App\Models\Configuracion;
 use BackedEnum;
 use Filament\Resources\Resource;
+use UnitEnum;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
@@ -30,7 +31,7 @@ class ConfiguracionResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Configuraciones';
 
-    protected static ?string $navigationGroup = 'Configuración';
+    protected static string|UnitEnum|null $navigationGroup = 'Configuración';
 
     protected static ?int $navigationSort = 2;
 

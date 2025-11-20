@@ -12,6 +12,7 @@ use App\Filament\Resources\Categorias\Tables\CategoriasTable;
 use App\Models\Categoria;
 use BackedEnum;
 use Filament\Resources\Resource;
+use UnitEnum;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
@@ -30,7 +31,7 @@ class CategoriaResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Categorías';
 
-    protected static ?string $navigationGroup = 'Catálogo';
+    protected static string|UnitEnum|null $navigationGroup = 'Catálogo';
 
     protected static ?int $navigationSort = 3;
 

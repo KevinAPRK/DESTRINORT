@@ -12,6 +12,7 @@ use App\Filament\Resources\Faqs\Tables\FaqsTable;
 use App\Models\Faq;
 use BackedEnum;
 use Filament\Resources\Resource;
+use UnitEnum;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
@@ -30,7 +31,7 @@ class FaqResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Preguntas Frecuentes';
 
-    protected static ?string $navigationGroup = 'Configuración';
+    protected static string|UnitEnum|null $navigationGroup = 'Configuración';
 
     protected static ?int $navigationSort = 3;
 
