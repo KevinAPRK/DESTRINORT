@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Articulos\Schemas;
 
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
@@ -24,7 +25,12 @@ class ArticuloForm
                 Textarea::make('contenido')
                     ->required()
                     ->columnSpanFull(),
-                TextInput::make('imagen_portada'),
+                FileUpload::make('imagen_portada')
+                    ->label('Imagen Portada')
+                    ->image()
+                    ->directory('articulos/portadas')
+                    ->imageEditor()
+                    ->maxSize(2048),
                 Select::make('autor_id')
                     ->relationship('autor', 'name')
                     ->required(),

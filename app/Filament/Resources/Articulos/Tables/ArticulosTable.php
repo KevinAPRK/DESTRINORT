@@ -7,6 +7,7 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -20,8 +21,8 @@ class ArticulosTable
                     ->searchable(),
                 TextColumn::make('slug')
                     ->searchable(),
-                TextColumn::make('imagen_portada')
-                    ->searchable(),
+                ImageColumn::make('imagen_portada')
+                    ->label('Imagen Portada'),
                 TextColumn::make('autor.name')
                     ->searchable(),
                 IconColumn::make('publicado')
