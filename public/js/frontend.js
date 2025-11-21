@@ -16,13 +16,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // === WhatsApp Functions ===
 function openWhatsApp() {
-    const whatsappNumber = '51999999999'; // Reemplazar con el número real
+    const whatsappNumber = '51912173821';
     const message = encodeURIComponent('Hola, me gustaría obtener más información sobre sus productos.');
     window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
 }
 
 function consultarProducto(nombreProducto) {
-    const whatsappNumber = '51999999999'; // Reemplazar con el número real
+    const whatsappNumber = '51912173821';
     const message = encodeURIComponent(`Hola, estoy interesado en el producto: ${nombreProducto}. ¿Podrían darme más información?`);
     window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
 }
