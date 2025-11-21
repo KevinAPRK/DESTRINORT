@@ -223,43 +223,54 @@
 <!-- Contacto Section -->
 <section class="contacto-section" id="contacto">
     <div class="container">
-        <div class="contacto-content">
-            <div class="contacto-info">
-                <h2>¿Necesitas ayuda?</h2>
-                <p>Estamos aquí para atenderte. Contáctanos por WhatsApp y te responderemos a la brevedad.</p>
-                
-                <div class="contacto-details">
-                    <div class="contacto-item">
-                        <i class="fas fa-phone"></i>
-                        <div>
-                            <strong>Teléfono</strong>
-                            <p>{{ $configuraciones['telefono'] ?? '' }}</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contacto-item">
-                        <i class="fas fa-envelope"></i>
-                        <div>
-                            <strong>Email</strong>
-                            <p>{{ $configuraciones['email'] ?? '' }}</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contacto-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <strong>Dirección</strong>
-                            <p>{{ $configuraciones['direccion'] ?? '' }}</p>
-                        </div>
-                    </div>
+        <div class="contacto-header">
+            <h2>ENCUÉNTRANOS</h2>
+            <p>Visítanos en nuestra ubicación en Piura</p>
+        </div>
+        
+        <div class="contacto-map-container">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3973.4961589856437!2d-80.63274668518425!3d-5.183847996243486!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x904a1a6e1a1a1a1b%3A0x1a1a1a1a1a1a1a1a!2sUrb.%2021%20de%20Agosto%2C%20Piura!5e0!3m2!1ses!2spe!4v1700000000000!5m2!1ses!2spe" 
+                width="100%" 
+                height="400" 
+                style="border:0; border-radius: 8px;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+        
+        <div class="contacto-info-grid">
+            <div class="contacto-info-card">
+                <div class="contacto-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="contacto-info-content">
+                    <h3>Dirección</h3>
+                    <p>MZA. B LOTE. 20 URB. 21 DE AGOSTO</p>
+                    <p>PIURA - PIURA - PIURA</p>
                 </div>
             </div>
             
-            <div class="contacto-action">
-                <button class="btn btn-whatsapp-large" onclick="openWhatsApp()">
-                    <i class="fab fa-whatsapp"></i>
-                    Chatea con nosotros
-                </button>
+            <div class="contacto-info-card">
+                <div class="contacto-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="contacto-info-content">
+                    <h3>Horario de Atención</h3>
+                    <p>Lunes a Viernes: 9:00 AM - 6:00 PM</p>
+                    <p>Sábados: 9:00 AM - 1:00 PM</p>
+                </div>
+            </div>
+            
+            <div class="contacto-info-card">
+                <div class="contacto-icon">
+                    <i class="fas fa-phone"></i>
+                </div>
+                <div class="contacto-info-content">
+                    <h3>Teléfono</h3>
+                    <p>{{ $configuraciones['telefono'] ?? '+51 912 173 821' }}</p>
+                </div>
             </div>
         </div>
     </div>
