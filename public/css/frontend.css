@@ -1047,8 +1047,12 @@ section {
         font-size: 1.8rem;
     }
     
-    .contacto-content {
+    .contacto-info-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .contacto-header h2 {
+        font-size: 2rem;
     }
     
     .chatbot-widget {
