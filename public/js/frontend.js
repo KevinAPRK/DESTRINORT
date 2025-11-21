@@ -79,13 +79,26 @@ function sendMessage() {
             mensaje: message
         })
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            return response.text().then(text => {
+                console.error('Error response:', text);
+                throw new Error('Error en el servidor: ' + response.status);
+            });
+        }
+        return response.json();
+    })
     .then(data => {
         // Mostrar respuesta del bot
-        addMessageToChat(data.respuesta, 'bot');
+        if (data.respuesta) {
+            addMessageToChat(data.respuesta, 'bot');
+        } else {
+            console.error('No hay respuesta en los datos:', data);
+            addMessageToChat('Lo siento, ha ocurrido un error. Por favor, intenta de nuevo.', 'bot');
+        }
     })
     .catch(error => {
-        console.error('Error:', error);
+        console.error('Error completo:', error);
         addMessageToChat('Lo siento, ha ocurrido un error. Por favor, intenta de nuevo.', 'bot');
     });
 }
