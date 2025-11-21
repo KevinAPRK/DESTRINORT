@@ -10,6 +10,8 @@ use App\Models\Producto;
 use App\Models\Marca;
 use App\Models\Faq;
 use Illuminate\Support\Str;
+use OpenAI;
+use Illuminate\Support\Facades\Log;
 
 class ChatbotController extends Controller
 {
@@ -202,7 +204,101 @@ class ChatbotController extends Controller
             return "¡De nada! Gracias por contactarte con DISTRINORT. Si necesitas algo más, estaré aquí para ayudarte. 😊";
         }
 
-        // Respuesta por defecto
-        return "Entiendo que necesitas ayuda. Te puedo ayudar con:\n\n• Información sobre productos y marcas\n• Precios y ofertas\n• Métodos de pago y envíos\n• Horarios de atención\n\nTambién puedes contactarnos directamente por WhatsApp para una atención más personalizada. ¿En qué más puedo ayudarte?";
+        // Si no hay coincidencia, usar OpenAI
+        return $this->getOpenAIResponse($mensaje, $sesion);
+    }
+
+    /**
+     * Obtener respuesta de OpenAI cuando no hay coincidencia
+     */
+    private function getOpenAIResponse($mensaje, $sesion)
+    {
+        try {
+            // Verificar si hay API key configurada
+            if (!env('OPENAI_API_KEY')) {
+                return "Entiendo que necesitas ayuda. Te puedo ayudar con:\n\n• Información sobre productos y marcas\n• Precios y ofertas\n• Métodos de pago y envíos\n• Horarios de atención\n\nTambién puedes contactarnos directamente por WhatsApp para una atención más personalizada. ¿En qué más puedo ayudarte?";
+            }
+
+            // Crear cliente con configuración HTTP personalizada para SSL
+            $httpClient = \OpenAI::factory()
+                ->withApiKey(env('OPENAI_API_KEY'))
+                ->withHttpClient(new \GuzzleHttp\Client([
+                    'verify' => false // Deshabilitar verificación SSL temporalmente
+                ]))
+                ->make();
+
+            $client = $httpClient;
+
+            // Obtener contexto de productos y marcas
+            $productos = Producto::where('activo', true)
+                ->where('disponible', true)
+                ->take(10)
+                ->get(['nombre', 'precio', 'descripcion_corta'])
+                ->map(fn($p) => "{$p->nombre} - S/{$p->precio}")
+                ->join(', ');
+
+            $marcas = Marca::where('activo', true)
+                ->pluck('nombre')
+                ->join(', ');
+
+            // Obtener historial reciente de la conversación
+            $historial = Mensaje::where('sesion_id', $sesion->id)
+                ->orderBy('timestamp_envio', 'desc')
+                ->take(6)
+                ->get()
+                ->reverse()
+                ->map(function($msg) {
+                    return [
+                        'role' => $msg->tipo_emisor === 'visitante' ? 'user' : 'assistant',
+                        'content' => $msg->contenido
+                    ];
+                })
+                ->toArray();
+
+            // Preparar el contexto del sistema
+            $systemPrompt = "Eres un asistente virtual de DISTRINORT, una distribuidora de productos para el cuidado del cabello en Perú. 
+
+Tu objetivo es ayudar a los clientes con información sobre productos, precios, marcas, métodos de pago y horarios de atención.
+
+INFORMACIÓN DE LA EMPRESA:
+- Productos disponibles: {$productos}
+- Marcas que manejamos: {$marcas}
+- Métodos de pago: Efectivo, transferencia bancaria, Yape, Plin, tarjetas
+- Horarios: Lunes a Viernes 8:00 AM - 6:00 PM, Sábados 9:00 AM - 1:00 PM
+- Ubicación: Trujillo, Perú
+
+INSTRUCCIONES:
+1. Sé amable, profesional y conciso
+2. Si te preguntan por un producto específico, usa la información proporcionada
+3. Si no tienes la información exacta, invita al cliente a contactar por WhatsApp
+4. Mantén las respuestas cortas (máximo 3-4 líneas)
+5. Usa emojis ocasionalmente para ser más amigable
+6. Siempre menciona que pueden contactar por WhatsApp para más información personalizada";
+
+            $messages = array_merge([
+                ['role' => 'system', 'content' => $systemPrompt]
+            ], $historial, [
+                ['role' => 'user', 'content' => $mensaje]
+            ]);
+
+            $response = $client->chat()->create([
+                'model' => 'gpt-3.5-turbo',
+                'messages' => $messages,
+                'max_tokens' => 200,
+                'temperature' => 0.7,
+            ]);
+
+            return $response->choices[0]->message->content;
+
+        } catch (\Exception $e) {
+            Log::error('Error OpenAI: ' . $e->getMessage());
+            
+            // Mensaje específico para rate limit
+            if (str_contains($e->getMessage(), 'rate limit')) {
+                return "Disculpa, estoy recibiendo muchas consultas en este momento. ⏱️\n\nPuedes:\n• Esperar un momento e intentar de nuevo\n• Contactarnos directamente por WhatsApp para atención inmediata\n\n¿Hay algo más en lo que pueda ayudarte?";
+            }
+            
+            return "Entiendo que necesitas ayuda. Te puedo ayudar con:\n\n• Información sobre productos y marcas\n• Precios y ofertas\n• Métodos de pago y envíos\n• Horarios de atención\n\nTambién puedes contactarnos directamente por WhatsApp para una atención más personalizada. ¿En qué más puedo ayudarte?";
+        }
     }
 }
