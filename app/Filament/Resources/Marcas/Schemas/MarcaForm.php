@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Marcas\Schemas;
 
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
@@ -19,7 +20,11 @@ class MarcaForm
                     ->required(),
                 Textarea::make('descripcion')
                     ->columnSpanFull(),
-                TextInput::make('logo'),
+                FileUpload::make('logo')
+                    ->image()
+                    ->directory('marcas/logos')
+                    ->imageEditor()
+                    ->maxSize(2048),
                 Toggle::make('activo')
                     ->required(),
                 TextInput::make('orden')

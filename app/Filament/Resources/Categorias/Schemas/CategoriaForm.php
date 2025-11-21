@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Categorias\Schemas;
 
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
@@ -19,8 +20,16 @@ class CategoriaForm
                     ->required(),
                 Textarea::make('descripcion')
                     ->columnSpanFull(),
-                TextInput::make('imagen'),
-                TextInput::make('icono'),
+                FileUpload::make('imagen')
+                    ->image()
+                    ->directory('categorias/imagenes')
+                    ->imageEditor()
+                    ->maxSize(2048),
+                FileUpload::make('icono')
+                    ->image()
+                    ->directory('categorias/iconos')
+                    ->imageEditor()
+                    ->maxSize(1024),
                 Toggle::make('activo')
                     ->required(),
                 TextInput::make('orden')
