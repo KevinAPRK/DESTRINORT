@@ -184,8 +184,8 @@
             @foreach($articulos as $articulo)
             <article class="blog-card">
                 <a href="{{ route('articulo.detalle', $articulo->slug) }}" class="blog-image">
-                    @if($articulo->imagen_destacada)
-                    <img src="{{ Storage::url($articulo->imagen_destacada) }}" alt="{{ $articulo->titulo }}">
+                    @if($articulo->imagen_portada)
+                    <img src="{{ Storage::url($articulo->imagen_portada) }}" alt="{{ $articulo->titulo }}">
                     @else
                     <img src="{{ asset('images/blog-default.jpg') }}" alt="{{ $articulo->titulo }}">
                     @endif

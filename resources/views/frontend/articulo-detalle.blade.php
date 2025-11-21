@@ -33,9 +33,9 @@
             </div>
         </div>
         
-        @if($articulo->imagen_destacada)
+        @if($articulo->imagen_portada)
         <div class="articulo-imagen-destacada">
-            <img src="{{ Storage::url($articulo->imagen_destacada) }}" alt="{{ $articulo->titulo }}">
+            <img src="{{ Storage::url($articulo->imagen_portada) }}" alt="{{ $articulo->titulo }}">
         </div>
         @endif
         
@@ -72,8 +72,8 @@
             @foreach($articulosRelacionados as $relacionado)
             <article class="blog-card">
                 <a href="{{ route('articulo.detalle', $relacionado->slug) }}" class="blog-image">
-                    @if($relacionado->imagen_destacada)
-                    <img src="{{ Storage::url($relacionado->imagen_destacada) }}" alt="{{ $relacionado->titulo }}">
+                    @if($relacionado->imagen_portada)
+                    <img src="{{ Storage::url($relacionado->imagen_portada) }}" alt="{{ $relacionado->titulo }}">
                     @else
                     <img src="{{ asset('images/blog-default.jpg') }}" alt="{{ $relacionado->titulo }}">
                     @endif
