@@ -24,12 +24,14 @@ class CategoriaForm
                     ->image()
                     ->disk('public')
                     ->directory('categorias/imagenes')
+                    ->visibility('public')
                     ->imageEditor()
                     ->maxSize(2048),
                 FileUpload::make('icono')
                     ->image()
                     ->disk('public')
                     ->directory('categorias/iconos')
+                    ->visibility('public')
                     ->imageEditor()
                     ->maxSize(1024),
                 Toggle::make('activo')

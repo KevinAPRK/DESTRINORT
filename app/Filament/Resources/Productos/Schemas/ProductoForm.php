@@ -45,6 +45,7 @@ class ProductoForm
                     ->image()
                     ->disk('public')
                     ->directory('productos')
+                    ->visibility('public')
                     ->maxSize(2048)
                     ->imageEditor()
                     ->columnSpanFull(),

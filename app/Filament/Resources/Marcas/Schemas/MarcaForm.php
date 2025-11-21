@@ -24,6 +24,7 @@ class MarcaForm
                     ->image()
                     ->disk('public')
                     ->directory('marcas/logos')
+                    ->visibility('public')
                     ->imageEditor()
                     ->maxSize(2048),
                 Toggle::make('activo')

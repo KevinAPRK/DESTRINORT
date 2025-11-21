@@ -30,6 +30,7 @@ class ArticuloForm
                     ->image()
                     ->disk('public')
                     ->directory('articulos/portadas')
+                    ->visibility('public')
                     ->imageEditor()
                     ->maxSize(2048),
                 Select::make('autor_id')
