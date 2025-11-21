@@ -43,6 +43,7 @@ class ProductoForm
                     ->required(),
                 FileUpload::make('imagen_principal')
                     ->image()
+                    ->disk('public')
                     ->directory('productos')
                     ->maxSize(2048)
                     ->imageEditor()

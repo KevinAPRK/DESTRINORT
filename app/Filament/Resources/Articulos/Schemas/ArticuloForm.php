@@ -28,6 +28,7 @@ class ArticuloForm
                 FileUpload::make('imagen_portada')
                     ->label('Imagen Portada')
                     ->image()
+                    ->disk('public')
                     ->directory('articulos/portadas')
                     ->imageEditor()
                     ->maxSize(2048),

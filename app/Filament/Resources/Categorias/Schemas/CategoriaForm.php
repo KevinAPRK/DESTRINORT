@@ -22,11 +22,13 @@ class CategoriaForm
                     ->columnSpanFull(),
                 FileUpload::make('imagen')
                     ->image()
+                    ->disk('public')
                     ->directory('categorias/imagenes')
                     ->imageEditor()
                     ->maxSize(2048),
                 FileUpload::make('icono')
                     ->image()
+                    ->disk('public')
                     ->directory('categorias/iconos')
                     ->imageEditor()
                     ->maxSize(1024),

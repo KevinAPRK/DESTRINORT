@@ -22,6 +22,7 @@ class MarcaForm
                     ->columnSpanFull(),
                 FileUpload::make('logo')
                     ->image()
+                    ->disk('public')
                     ->directory('marcas/logos')
                     ->imageEditor()
                     ->maxSize(2048),
