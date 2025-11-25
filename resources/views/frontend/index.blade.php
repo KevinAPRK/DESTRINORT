@@ -136,6 +136,253 @@
 </section>
 @endif
 
+<!-- Carrusel de Categorías -->
+<section class="carousel-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>NUESTRAS CATEGORÍAS</h2>
+            <p>Explora nuestra variedad de productos</p>
+        </div>
+        
+        <div class="carousel-wrapper">
+            <!-- Botón Anterior -->
+            <button onclick="scrollCarousel('prev')" class="carousel-btn carousel-btn-prev" aria-label="Anterior">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            
+            <!-- Contenedor del Carrusel -->
+            <div id="carouselContainer" class="carousel-container">
+                <!-- Tarjeta 1 -->
+                <div class="carousel-card">
+                    <div class="carousel-card-inner">
+                        <div class="carousel-card-header carousel-card-image">
+                            <img src="{{ asset('images/categorias/peluqueria.jpg') }}" alt="Peluquería">
+                        </div>
+                        <div class="carousel-card-body">
+                            <h3>Peluquería</h3>
+                            <p>Productos profesionales para estilistas y salones de belleza.</p>
+                            <button class="btn btn-primary">Ver productos</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tarjeta 2 -->
+                <div class="carousel-card">
+                    <div class="carousel-card-inner">
+                        <div class="carousel-card-header carousel-card-image">
+                            <img src="{{ asset('images/categorias/tratamientos.jpg') }}" alt="Tratamientos">
+                        </div>
+                        <div class="carousel-card-body">
+                            <h3>Tratamientos</h3>
+                            <p>Fórmulas avanzadas para el cuidado y reparación capilar.</p>
+                            <button class="btn btn-primary">Ver productos</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tarjeta 3 -->
+                <div class="carousel-card">
+                    <div class="carousel-card-inner">
+                        <div class="carousel-card-header carousel-card-image">
+                            <img src="{{ asset('images/categorias/naturales.jpg') }}" alt="Naturales">
+                        </div>
+                        <div class="carousel-card-body">
+                            <h3>Naturales</h3>
+                            <p>Productos orgánicos y libres de químicos agresivos.</p>
+                            <button class="btn btn-primary">Ver productos</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tarjeta 4 -->
+                <div class="carousel-card">
+                    <div class="carousel-card-inner">
+                        <div class="carousel-card-header carousel-card-image">
+                            <img src="{{ asset('images/categorias/coloracion.jpg') }}" alt="Coloración">
+                        </div>
+                        <div class="carousel-card-body">
+                            <h3>Coloración</h3>
+                            <p>Tintes y colorantes profesionales de larga duración.</p>
+                            <button class="btn btn-primary">Ver productos</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tarjeta 5 -->
+                <div class="carousel-card">
+                    <div class="carousel-card-inner">
+                        <div class="carousel-card-header carousel-card-image">
+                            <img src="{{ asset('images/categorias/premium.jpg') }}" alt="Premium">
+                        </div>
+                        <div class="carousel-card-body">
+                            <h3>Premium</h3>
+                            <p>Línea exclusiva de productos de alta gama.</p>
+                            <button class="btn btn-primary">Ver productos</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tarjeta 6 -->
+                <div class="carousel-card">
+                    <div class="carousel-card-inner">
+                        <div class="carousel-card-header carousel-card-image">
+                            <img src="{{ asset('images/categorias/cuidado-diario.jpg') }}" alt="Cuidado Diario">
+                        </div>
+                        <div class="carousel-card-body">
+                            <h3>Cuidado Diario</h3>
+                            <p>Shampoos, acondicionadores y productos de uso diario.</p>
+                            <button class="btn btn-primary">Ver productos</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Botón Siguiente -->
+            <button onclick="scrollCarousel('next')" class="carousel-btn carousel-btn-next" aria-label="Siguiente">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+</section>
+
+<style>
+.carousel-section {
+    padding: 60px 0;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.carousel-wrapper {
+    position: relative;
+    padding: 0 50px;
+}
+
+.carousel-container {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    padding: 20px 0;
+}
+
+.carousel-container::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel-card {
+    flex: 0 0 320px;
+    scroll-snap-align: start;
+}
+
+.carousel-card-inner {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.carousel-card-inner:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.carousel-card-header {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.carousel-card-header i {
+    font-size: 4rem;
+    color: white;
+}
+
+.carousel-card-image {
+    background: transparent !important;
+}
+
+.carousel-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.carousel-card-inner:hover .carousel-card-image img {
+    transform: scale(1.1);
+}
+
+.carousel-card-body {
+    padding: 24px;
+}
+
+.carousel-card-body h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 12px;
+    color: #333;
+}
+
+.carousel-card-body p {
+    color: #666;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.carousel-card-body .btn {
+    width: 100%;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.carousel-btn:hover {
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-btn-prev {
+    left: 0;
+}
+
+.carousel-btn-next {
+    right: 0;
+}
+
+.carousel-btn i {
+    font-size: 1.2rem;
+    color: #333;
+}
+
+@media (max-width: 768px) {
+    .carousel-wrapper {
+        padding: 0 20px;
+    }
+    
+    .carousel-card {
+        flex: 0 0 280px;
+    }
+}
+</style>
+
 <!-- Reseñas / Testimonios Section -->
 @if($resenas->count() > 0)
 <section class="testimonios-section">
@@ -291,6 +538,52 @@
         }, 5000);
         
         slides[0].classList.add('active');
+    }
+    
+    // Carrusel de Tarjetas
+    function scrollCarousel(direction) {
+        const container = document.getElementById('carouselContainer');
+        const scrollAmount = 350; // Ancho de la tarjeta + gap
+        
+        if (direction === 'next') {
+            container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        } else {
+            container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        }
+    }
+    
+    // Auto-scroll del carrusel (opcional)
+    let carouselAutoScroll = setInterval(() => {
+        const container = document.getElementById('carouselContainer');
+        const maxScroll = container.scrollWidth - container.clientWidth;
+        
+        if (container.scrollLeft >= maxScroll - 10) {
+            // Volver al inicio suavemente
+            container.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+            scrollCarousel('next');
+        }
+    }, 5000);
+    
+    // Pausar auto-scroll al hover
+    const carouselContainer = document.getElementById('carouselContainer');
+    if (carouselContainer) {
+        carouselContainer.addEventListener('mouseenter', () => {
+            clearInterval(carouselAutoScroll);
+        });
+        
+        carouselContainer.addEventListener('mouseleave', () => {
+            carouselAutoScroll = setInterval(() => {
+                const container = document.getElementById('carouselContainer');
+                const maxScroll = container.scrollWidth - container.clientWidth;
+                
+                if (container.scrollLeft >= maxScroll - 10) {
+                    container.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    scrollCarousel('next');
+                }
+            }, 5000);
+        });
     }
 </script>
 @endpush

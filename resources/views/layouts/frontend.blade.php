@@ -70,6 +70,7 @@
                     <ul class="navbar-menu" id="navbarMenu">
                         <li><a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'active' : '' }}">Inicio</a></li>
                         <li><a href="{{ route('nosotros') }}" class="{{ request()->routeIs('nosotros') ? 'active' : '' }}">Nosotros</a></li>
+                        <li><a href="{{ route('productos') }}" class="{{ request()->routeIs('productos') ? 'active' : '' }}">Productos</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle">Marcas <i class="fas fa-chevron-down"></i></a>
                             <ul class="dropdown-menu">

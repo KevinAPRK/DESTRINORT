@@ -64,6 +64,57 @@ class FrontendController extends Controller
         return view('frontend.nosotros', compact('configuraciones'));
     }
 
+    public function productos(Request $request)
+    {
+        $query = Producto::where('activo', true)->with(['marca', 'categoria', 'imagenes']);
+
+        // Filtro por categoría
+        if ($request->has('categoria') && $request->categoria != '') {
+            $query->where('categoria_id', $request->categoria);
+        }
+
+        // Filtro por marca
+        if ($request->has('marca') && $request->marca != '') {
+            $query->where('marca_id', $request->marca);
+        }
+
+        // Filtro por disponibilidad
+        if ($request->has('disponible') && $request->disponible == '1') {
+            $query->where('disponible', true);
+        }
+
+        // Filtro por destacados
+        if ($request->has('destacado') && $request->destacado == '1') {
+            $query->where('destacado', true);
+        }
+
+        // Ordenamiento
+        $ordenar = $request->get('ordenar', 'recientes');
+        switch ($ordenar) {
+            case 'precio_asc':
+                $query->orderBy('precio', 'asc');
+                break;
+            case 'precio_desc':
+                $query->orderBy('precio', 'desc');
+                break;
+            case 'nombre':
+                $query->orderBy('nombre', 'asc');
+                break;
+            case 'populares':
+                $query->orderBy('vistas', 'desc');
+                break;
+            default:
+                $query->orderBy('created_at', 'desc');
+        }
+
+        $productos = $query->paginate(12);
+        $categorias = Categoria::where('activo', true)->orderBy('nombre')->get();
+        $marcas = Marca::where('activo', true)->orderBy('nombre')->get();
+        $configuraciones = Configuracion::pluck('valor', 'clave');
+
+        return view('frontend.productos', compact('productos', 'categorias', 'marcas', 'configuraciones'));
+    }
+
     public function marcaProductos($slug)
     {
         $marca = Marca::where('slug', $slug)
