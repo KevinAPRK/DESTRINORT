@@ -57,6 +57,13 @@ class FrontendController extends Controller
         ));
     }
 
+    public function nosotros()
+    {
+        $configuraciones = Configuracion::pluck('valor', 'clave');
+
+        return view('frontend.nosotros', compact('configuraciones'));
+    }
+
     public function marcaProductos($slug)
     {
         $marca = Marca::where('slug', $slug)

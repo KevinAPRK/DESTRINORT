@@ -83,8 +83,14 @@
                 @endif
                 
                 @if($producto->descripcion_corta)
-                <div class="producto-descripcion-corta">
+                <div class="producto-descripcion-corta" style="margin-bottom: 15px;">
                     <p>{{ $producto->descripcion_corta }}</p>
+                </div>
+                @endif
+                
+                @if($producto->descripcion_larga)
+                <div class="producto-descripcion-larga" style="margin-bottom: 20px; line-height: 1.6;">
+                    {!! nl2br(e($producto->descripcion_larga)) !!}
                 </div>
                 @endif
                 
@@ -118,9 +124,8 @@
         <!-- Tabs de Información -->
         <div class="producto-tabs">
             <div class="tabs-header">
-                <button class="tab-button active" onclick="showTab('descripcion')">Descripción</button>
                 @if($producto->modo_uso)
-                <button class="tab-button" onclick="showTab('modo-uso')">Modo de Uso</button>
+                <button class="tab-button active" onclick="showTab('modo-uso')">Modo de Uso</button>
                 @endif
                 @if($producto->ingredientes)
                 <button class="tab-button" onclick="showTab('ingredientes')">Ingredientes</button>
@@ -131,18 +136,14 @@
             </div>
             
             <div class="tabs-content">
-                <div id="tab-descripcion" class="tab-pane active">
-                    {!! $producto->descripcion !!}
-                </div>
-                
                 @if($producto->modo_uso)
-                <div id="tab-modo-uso" class="tab-pane">
+                <div id="tab-modo-uso" class="tab-pane active">
                     {!! nl2br(e($producto->modo_uso)) !!}
                 </div>
                 @endif
                 
                 @if($producto->ingredientes)
-                <div id="tab-ingredientes" class="tab-pane">
+                <div id="tab-ingredientes" class="tab-pane @if(!$producto->modo_uso) active @endif">
                     {!! nl2br(e($producto->ingredientes)) !!}
                 </div>
                 @endif
@@ -192,11 +193,11 @@
             <div class="producto-card">
                 <a href="{{ route('producto.detalle', $relacionado->slug) }}" class="producto-image">
                     @if($relacionado->imagen_principal)
-                    <img src="{{ Storage::url($relacionado->imagen_principal) }}" alt="{{ $relacionado->nombre }}">
+                    <img src="{{ Storage::url($relacionado->imagen_principal) }}" alt="{{ $relacionado->nombre }}" style="width: 200px; height: 200px; object-fit: cover;">
                     @elseif($relacionado->imagenes->count() > 0)
-                    <img src="{{ Storage::url($relacionado->imagenes->first()->ruta) }}" alt="{{ $relacionado->nombre }}">
+                    <img src="{{ Storage::url($relacionado->imagenes->first()->ruta) }}" alt="{{ $relacionado->nombre }}" style="width: 200px; height: 200px; object-fit: cover;">
                     @else
-                    <img src="{{ asset('images/no-image.jpg') }}" alt="{{ $relacionado->nombre }}">
+                    <img src="{{ asset('images/no-image.jpg') }}" alt="{{ $relacionado->nombre }}" style="width: 200px; height: 200px; object-fit: cover;">
                     @endif
                 </a>
                 

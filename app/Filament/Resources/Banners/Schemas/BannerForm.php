@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Banners\Schemas;
 
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -16,8 +17,15 @@ class BannerForm
                 TextInput::make('titulo')
                     ->required(),
                 TextInput::make('subtitulo'),
-                TextInput::make('imagen')
-                    ->required(),
+                FileUpload::make('imagen')
+                    ->image()
+                    ->disk('public')
+                    ->directory('banners')
+                    ->visibility('public')
+                    ->maxSize(2048)
+                    ->imageEditor()
+                    ->required()
+                    ->columnSpanFull(),
                 TextInput::make('texto_boton'),
                 TextInput::make('url_boton'),
                 Select::make('tipo')

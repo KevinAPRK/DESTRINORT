@@ -90,11 +90,11 @@
             <div class="producto-card">
                 <a href="{{ route('producto.detalle', $producto->slug) }}" class="producto-image">
                     @if($producto->imagen_principal)
-                    <img src="{{ Storage::url($producto->imagen_principal) }}" alt="{{ $producto->nombre }}">
+                    <img src="{{ Storage::url($producto->imagen_principal) }}" alt="{{ $producto->nombre }}" style="width: 200px; height: 200px; object-fit: cover;">
                     @elseif($producto->imagenes->count() > 0)
-                    <img src="{{ Storage::url($producto->imagenes->first()->ruta) }}" alt="{{ $producto->nombre }}">
+                    <img src="{{ Storage::url($producto->imagenes->first()->ruta) }}" alt="{{ $producto->nombre }}" style="width: 200px; height: 200px; object-fit: cover;">
                     @else
-                    <img src="{{ asset('images/no-image.jpg') }}" alt="{{ $producto->nombre }}">
+                    <img src="{{ asset('images/no-image.jpg') }}" alt="{{ $producto->nombre }}" style="width: 200px; height: 200px; object-fit: cover;">
                     @endif
                     @if($producto->nuevo)
                     <span class="badge badge-nuevo">Nuevo</span>

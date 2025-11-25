@@ -6,6 +6,7 @@ use App\Http\Controllers\ChatbotController;
 
 // Frontend Routes
 Route::get('/', [FrontendController::class, 'index'])->name('home');
+Route::get('/nosotros', [FrontendController::class, 'nosotros'])->name('nosotros');
 Route::get('/marca/{slug}', [FrontendController::class, 'marcaProductos'])->name('marca.productos');
 Route::get('/producto/{slug}', [FrontendController::class, 'productoDetalle'])->name('producto.detalle');
 Route::get('/blog', [FrontendController::class, 'blog'])->name('blog');
