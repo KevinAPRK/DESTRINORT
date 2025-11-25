@@ -1,5 +1,247 @@
 @extends('layouts.frontend')
 
+@push('styles')
+<style>
+/* Hero Section Enhancements */
+.hero-overlay {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3));
+}
+
+.hero-title-animated {
+    animation: fadeInUp 1s ease-out;
+}
+
+.hero-subtitle-animated {
+    animation: fadeInUp 1.2s ease-out;
+}
+
+.hero-button-animated {
+    animation: fadeInUp 1.4s ease-out;
+    transition: all 0.3s ease;
+}
+
+.hero-button-animated:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.floating-element {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: float 6s ease-in-out infinite;
+}
+
+.floating-element:nth-child(1) {
+    width: 80px;
+    height: 80px;
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.floating-element:nth-child(2) {
+    width: 120px;
+    height: 120px;
+    top: 60%;
+    right: 15%;
+    animation-delay: 2s;
+}
+
+.floating-element:nth-child(3) {
+    width: 60px;
+    height: 60px;
+    bottom: 15%;
+    left: 25%;
+    animation-delay: 4s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(180deg);
+    }
+}
+
+/* Section Headers Modern */
+.section-header-modern {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-badge {
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+.section-badge-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.section-badge-success {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+}
+
+.section-badge-info {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: white;
+}
+
+.section-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.divider-line {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #667eea, transparent);
+}
+
+.divider-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #667eea;
+}
+
+/* Marcas Modern Cards */
+.marca-card-modern {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.marca-card-modern::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+.marca-card-modern:hover::before {
+    left: 100%;
+}
+
+.marca-card-modern:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.marca-card-modern .fa-arrow-right {
+    transition: transform 0.3s ease;
+}
+
+.marca-card-modern:hover .fa-arrow-right {
+    transform: translateX(5px);
+}
+
+/* Productos Card Hover */
+.producto-card-hover {
+    transition: all 0.3s ease;
+}
+
+.producto-card-hover:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+}
+
+.producto-image-zoom {
+    overflow: hidden;
+}
+
+.producto-image-zoom img {
+    transition: transform 0.5s ease;
+}
+
+.producto-image-zoom:hover img {
+    transform: scale(1.1);
+}
+
+/* Testimonios Modern */
+.testimonio-card-modern {
+    position: relative;
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
+}
+
+.testimonio-card-modern:hover {
+    border-left-color: #667eea;
+    transform: translateX(5px);
+    box-shadow: -5px 10px 30px rgba(0,0,0,0.1);
+}
+
+.testimonio-card-modern::before {
+    content: '"';
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    font-size: 60px;
+    color: rgba(102, 126, 234, 0.1);
+    font-family: Georgia, serif;
+}
+
+/* Blog Cards Hover */
+.blog-card-hover {
+    transition: all 0.3s ease;
+}
+
+.blog-card-hover:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+}
+
+.blog-card-hover .blog-image img {
+    transition: transform 0.5s ease;
+}
+
+.blog-card-hover:hover .blog-image img {
+    transform: scale(1.05);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .floating-element {
+        display: none;
+    }
+    
+    .section-badge {
+        font-size: 10px;
+        padding: 6px 15px;
+    }
+}
+</style>
+@endpush
+
 @section('content')
 <!-- Hero Section / Banners -->
 <section class="hero-section">
@@ -7,50 +249,72 @@
         @forelse($banners as $banner)
         <div class="hero-slide">
             <img src="{{ Storage::url($banner->imagen) }}" alt="{{ $banner->titulo }}">
+            <div class="hero-overlay"></div>
             <div class="hero-content">
                 <div class="container">
-                    <h1>{{ $banner->titulo }}</h1>
+                    <h1 class="hero-title-animated">{{ $banner->titulo }}</h1>
                     @if($banner->subtitulo)
-                    <p>{{ $banner->subtitulo }}</p>
+                    <p class="hero-subtitle-animated">{{ $banner->subtitulo }}</p>
                     @endif
                     @if($banner->enlace)
-                    <a href="{{ $banner->enlace }}" class="btn btn-primary">{{ $banner->texto_boton ?? 'Ver más' }}</a>
+                    <a href="{{ $banner->enlace }}" class="btn btn-primary btn-hero-animated">{{ $banner->texto_boton ?? 'Ver más' }}</a>
                     @endif
                 </div>
             </div>
         </div>
         @empty
         <div class="hero-slide hero-default">
+            <div class="hero-overlay"></div>
             <div class="hero-content">
                 <div class="container">
-                    <h1>BIENVENIDA A DISTRINORT</h1>
-                    <p>Distribuidora líder en productos para el cuidado del cabello</p>
-                    <button class="btn btn-primary" onclick="openWhatsApp()">Contáctanos</button>
+                    <h1 class="hero-title-animated">BIENVENIDA A DISTRINORT</h1>
+                    <p class="hero-subtitle-animated">Distribuidora líder en productos para el cuidado del cabello</p>
+                    <button class="btn btn-primary btn-hero-animated" onclick="openWhatsApp()">Contáctanos</button>
                 </div>
             </div>
         </div>
         @endforelse
+    </div>
+    
+    <!-- Elementos decorativos flotantes -->
+    <div class="hero-decoration">
+        <div class="floating-element element-1"></div>
+        <div class="floating-element element-2"></div>
+        <div class="floating-element element-3"></div>
     </div>
 </section>
 
 <!-- Marcas Section -->
 <section class="marcas-section">
     <div class="container">
-        <div class="section-header">
+        <div class="section-header section-header-modern">
+            <span class="section-badge">Nuestras Alianzas</span>
             <h2>DESCUBRE DISTRINORT</h2>
             <p>Trabajamos con las mejores marcas del mercado</p>
+            <div class="section-divider">
+                <span class="divider-dot"></span>
+                <span class="divider-line"></span>
+                <span class="divider-dot"></span>
+            </div>
         </div>
         
-        <div class="marcas-grid">
+        <div class="marcas-grid marcas-grid-modern">
             @foreach($marcas as $marca)
-            <a href="{{ route('marca.productos', $marca->slug) }}" class="marca-card">
-                @if($marca->logo)
-                <img src="{{ Storage::url($marca->logo) }}" alt="{{ $marca->nombre }}">
-                @endif
-                <h3>{{ $marca->nombre }}</h3>
-                @if($marca->descripcion)
-                <p>{{ Str::limit($marca->descripcion, 100) }}</p>
-                @endif
+            <a href="{{ route('marca.productos', $marca->slug) }}" class="marca-card marca-card-modern">
+                <div class="marca-card-inner">
+                    @if($marca->logo)
+                    <div class="marca-logo-wrapper">
+                        <img src="{{ Storage::url($marca->logo) }}" alt="{{ $marca->nombre }}">
+                    </div>
+                    @endif
+                    <div class="marca-info">
+                        <h3>{{ $marca->nombre }}</h3>
+                        @if($marca->descripcion)
+                        <p>{{ Str::limit($marca->descripcion, 100) }}</p>
+                        @endif
+                        <span class="marca-arrow"><i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
             </a>
             @endforeach
         </div>
@@ -80,15 +344,21 @@
 @if($productosDestacados->count() > 0)
 <section class="productos-section">
     <div class="container">
-        <div class="section-header">
+        <div class="section-header section-header-modern">
+            <span class="section-badge section-badge-primary">Destacados</span>
             <h2>PRODUCTOS DESTACADOS</h2>
             <p>Los productos más populares de nuestro catálogo</p>
+            <div class="section-divider">
+                <span class="divider-dot"></span>
+                <span class="divider-line"></span>
+                <span class="divider-dot"></span>
+            </div>
         </div>
         
         <div class="productos-grid">
             @foreach($productosDestacados as $producto)
-            <div class="producto-card">
-                <a href="{{ route('producto.detalle', $producto->slug) }}" class="producto-image">
+            <div class="producto-card producto-card-hover">
+                <a href="{{ route('producto.detalle', $producto->slug) }}" class="producto-image producto-image-zoom">
                     @if($producto->imagen_principal)
                     <img src="{{ Storage::url($producto->imagen_principal) }}" alt="{{ $producto->nombre }}" style="width: 200px; height: 200px; object-fit: cover;">
                     @elseif($producto->imagenes->count() > 0)
@@ -156,12 +426,12 @@
                 <div class="carousel-card">
                     <div class="carousel-card-inner">
                         <div class="carousel-card-header carousel-card-image">
-                            <img src="{{ asset('images/categorias/peluqueria.jpg') }}" alt="Peluquería">
+                            <img src="{{ asset('images/categorias/limpieza-facial.jpg') }}" alt="Limpieza Facial">
                         </div>
                         <div class="carousel-card-body">
-                            <h3>Peluquería</h3>
-                            <p>Productos profesionales para estilistas y salones de belleza.</p>
-                            <button class="btn btn-primary">Ver productos</button>
+                            <h3>Limpieza Facial</h3>
+                            <p>Productos especializados para el cuidado y limpieza del rostro.</p>
+                            <a href="{{ route('productos') }}" class="btn btn-primary">Ver productos</a>
                         </div>
                     </div>
                 </div>
@@ -170,12 +440,12 @@
                 <div class="carousel-card">
                     <div class="carousel-card-inner">
                         <div class="carousel-card-header carousel-card-image">
-                            <img src="{{ asset('images/categorias/tratamientos.jpg') }}" alt="Tratamientos">
+                            <img src="{{ asset('images/categorias/shampoo.jpg') }}" alt="Shampoo">
                         </div>
                         <div class="carousel-card-body">
-                            <h3>Tratamientos</h3>
-                            <p>Fórmulas avanzadas para el cuidado y reparación capilar.</p>
-                            <button class="btn btn-primary">Ver productos</button>
+                            <h3>Shampoo</h3>
+                            <p>Variedad de shampoos para todo tipo de cabello.</p>
+                            <a href="{{ route('productos') }}" class="btn btn-primary">Ver productos</a>
                         </div>
                     </div>
                 </div>
@@ -184,12 +454,12 @@
                 <div class="carousel-card">
                     <div class="carousel-card-inner">
                         <div class="carousel-card-header carousel-card-image">
-                            <img src="{{ asset('images/categorias/naturales.jpg') }}" alt="Naturales">
+                            <img src="{{ asset('images/categorias/cuidado-infantil.jpg') }}" alt="Cuidado Infantil">
                         </div>
                         <div class="carousel-card-body">
-                            <h3>Naturales</h3>
-                            <p>Productos orgánicos y libres de químicos agresivos.</p>
-                            <button class="btn btn-primary">Ver productos</button>
+                            <h3>Cuidado Infantil</h3>
+                            <p>Productos suaves y seguros para el cuidado de los más pequeños.</p>
+                            <a href="{{ route('productos') }}" class="btn btn-primary">Ver productos</a>
                         </div>
                     </div>
                 </div>
@@ -198,12 +468,12 @@
                 <div class="carousel-card">
                     <div class="carousel-card-inner">
                         <div class="carousel-card-header carousel-card-image">
-                            <img src="{{ asset('images/categorias/coloracion.jpg') }}" alt="Coloración">
+                            <img src="{{ asset('images/categorias/proteccion-solar-corporal.jpg') }}" alt="Protección Solar Corporal">
                         </div>
                         <div class="carousel-card-body">
-                            <h3>Coloración</h3>
-                            <p>Tintes y colorantes profesionales de larga duración.</p>
-                            <button class="btn btn-primary">Ver productos</button>
+                            <h3>Protección Solar Corporal</h3>
+                            <p>Protectores solares para cuidar tu piel del sol.</p>
+                            <a href="{{ route('productos') }}" class="btn btn-primary">Ver productos</a>
                         </div>
                     </div>
                 </div>
@@ -212,12 +482,12 @@
                 <div class="carousel-card">
                     <div class="carousel-card-inner">
                         <div class="carousel-card-header carousel-card-image">
-                            <img src="{{ asset('images/categorias/premium.jpg') }}" alt="Premium">
+                            <img src="{{ asset('images/categorias/tratamientos.jpg') }}" alt="Tratamientos">
                         </div>
                         <div class="carousel-card-body">
-                            <h3>Premium</h3>
-                            <p>Línea exclusiva de productos de alta gama.</p>
-                            <button class="btn btn-primary">Ver productos</button>
+                            <h3>Tratamientos</h3>
+                            <p>Fórmulas avanzadas para el cuidado especializado.</p>
+                            <a href="{{ route('productos') }}" class="btn btn-primary">Ver productos</a>
                         </div>
                     </div>
                 </div>
@@ -226,12 +496,12 @@
                 <div class="carousel-card">
                     <div class="carousel-card-inner">
                         <div class="carousel-card-header carousel-card-image">
-                            <img src="{{ asset('images/categorias/cuidado-diario.jpg') }}" alt="Cuidado Diario">
+                            <img src="{{ asset('images/categorias/jabones-naturales.jpg') }}" alt="Jabones Naturales">
                         </div>
                         <div class="carousel-card-body">
-                            <h3>Cuidado Diario</h3>
-                            <p>Shampoos, acondicionadores y productos de uso diario.</p>
-                            <button class="btn btn-primary">Ver productos</button>
+                            <h3>Jabones Naturales</h3>
+                            <p>Jabones artesanales elaborados con ingredientes naturales.</p>
+                            <a href="{{ route('productos') }}" class="btn btn-primary">Ver productos</a>
                         </div>
                     </div>
                 </div>
@@ -387,14 +657,20 @@
 @if($resenas->count() > 0)
 <section class="testimonios-section">
     <div class="container">
-        <div class="section-header">
+        <div class="section-header section-header-modern">
+            <span class="section-badge section-badge-success">Testimonios</span>
             <h2>LO QUE DICEN NUESTROS CLIENTES</h2>
             <p>Testimonios reales de quienes confían en nosotros</p>
+            <div class="section-divider">
+                <span class="divider-dot"></span>
+                <span class="divider-line"></span>
+                <span class="divider-dot"></span>
+            </div>
         </div>
         
         <div class="testimonios-grid">
             @foreach($resenas as $resena)
-            <div class="testimonio-card">
+            <div class="testimonio-card testimonio-card-modern">
                 <div class="testimonio-rating">
                     @for($i = 1; $i <= 5; $i++)
                         @if($i <= $resena->calificacion)
@@ -422,14 +698,20 @@
 @if($articulos->count() > 0)
 <section class="blog-section">
     <div class="container">
-        <div class="section-header">
+        <div class="section-header section-header-modern">
+            <span class="section-badge section-badge-info">Blog</span>
             <h2>MUNDO DISTRINORT</h2>
             <p>Artículos, consejos y novedades sobre el cuidado del cabello</p>
+            <div class="section-divider">
+                <span class="divider-dot"></span>
+                <span class="divider-line"></span>
+                <span class="divider-dot"></span>
+            </div>
         </div>
         
         <div class="blog-grid">
             @foreach($articulos as $articulo)
-            <article class="blog-card">
+            <article class="blog-card blog-card-hover">
                 <a href="{{ route('articulo.detalle', $articulo->slug) }}" class="blog-image">
                     @if($articulo->imagen_portada)
                     <img src="{{ Storage::url($articulo->imagen_portada) }}" alt="{{ $articulo->titulo }}">
