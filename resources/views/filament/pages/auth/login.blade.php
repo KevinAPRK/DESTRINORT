@@ -1,18 +1,22 @@
 <x-filament-panels::page.simple>
-    @push('styles')
     <style>
         body,
-        html {
+        html,
+        #app,
+        [x-cloak],
+        .fi-body,
+        .fi-layout,
+        .dark,
+        [x-data],
+        main {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+            background-attachment: fixed !important;
+        }
+
+        body {
             margin: 0;
             padding: 0;
             min-height: 100vh;
-        }
-
-        .fi-body,
-        .fi-layout,
-        [x-data] {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
         }
 
         .fi-simple-page {
@@ -21,6 +25,7 @@
             justify-content: center;
             min-height: 100vh;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+            background-attachment: fixed !important;
         }
 
         .fi-simple-main {

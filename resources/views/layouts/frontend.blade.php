@@ -29,37 +29,11 @@
 <body>
     <!-- Header -->
     <header class="header">
-        <div class="header-top">
-            <div class="container">
-                <div class="header-top-content">
-                    <div class="header-contact">
-                        <a href="tel:{{ $configuraciones['telefono'] ?? '' }}">
-                            <i class="fas fa-phone"></i> {{ $configuraciones['telefono'] ?? '' }}
-                        </a>
-                        <a href="mailto:{{ $configuraciones['email'] ?? '' }}">
-                            <i class="fas fa-envelope"></i> {{ $configuraciones['email'] ?? '' }}
-                        </a>
-                    </div>
-                    <div class="header-social">
-                        @if(isset($configuraciones['facebook_url']))
-                        <a href="{{ $configuraciones['facebook_url'] }}" target="_blank"><i class="fab fa-facebook"></i></a>
-                        @endif
-                        @if(isset($configuraciones['instagram_url']))
-                        <a href="{{ $configuraciones['instagram_url'] }}" target="_blank"><i class="fab fa-instagram"></i></a>
-                        @endif
-                        @if(isset($configuraciones['tiktok_url']))
-                        <a href="{{ $configuraciones['tiktok_url'] }}" target="_blank"><i class="fab fa-tiktok"></i></a>
-                        @endif
-                    </div>
-                </div>
-            </div>
-        </div>
-        
         <nav class="navbar">
             <div class="container">
                 <div class="navbar-content">
                     <a href="{{ route('home') }}" class="navbar-brand">
-                        <img src="{{ asset('images/Logo.jpg') }}" alt="DISTRINORT" style="height: 50px; width: auto;">
+                        <img src="{{ asset('images/Logopng.png') }}" alt="DISTRINORT" style="height: 50px; width: auto;">
                     </a>
                     
                     <button class="navbar-toggle" id="navbarToggle">

@@ -56,45 +56,32 @@ a {
 }
 
 /* === Header === */
-.header-top {
-    background: var(--text-dark);
-    color: white;
-    padding: 10px 0;
-    font-size: 0.875rem;
-}
-
-.header-top-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.header-contact a {
-    color: white;
-    margin-right: 20px;
-}
-
-.header-contact a:hover {
-    color: var(--accent-color);
-}
-
-.header-social a {
-    color: white;
-    margin-left: 15px;
-    font-size: 1.1rem;
-}
-
-.header-social a:hover {
-    color: var(--primary-color);
+.header {
+    margin: 0;
+    padding: 0;
 }
 
 /* === Navbar === */
 .navbar {
-    background: white;
-    box-shadow: var(--shadow);
-    position: sticky;
+    background: #1e3a8a;
+    box-shadow: none;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 1000;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    padding-top: 80px;
+    margin-top: 0;
+}
+
+.hero-section {
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .navbar-content {
@@ -125,7 +112,7 @@ a {
 .navbar-toggle span {
     width: 25px;
     height: 3px;
-    background: var(--text-dark);
+    background: white;
     margin: 3px 0;
     transition: var(--transition);
 }
@@ -139,13 +126,13 @@ a {
 
 .navbar-menu a {
     font-weight: 500;
-    color: var(--text-dark);
+    color: white;
     padding: 5px 0;
 }
 
 .navbar-menu a:hover,
 .navbar-menu a.active {
-    color: var(--primary-color);
+    color: #60a5fa;
 }
 
 .dropdown {
@@ -183,6 +170,12 @@ a {
 .dropdown-menu li a {
     display: block;
     padding: 10px 20px;
+    color: var(--text-dark) !important;
+}
+
+.dropdown-menu li a:hover {
+    background: #f3f4f6;
+    color: var(--primary-color) !important;
 }
 
 .dropdown-menu li a:hover {
@@ -282,7 +275,8 @@ a {
 
 .hero-slide {
     position: relative;
-    height: 500px;
+    height: calc(100vh - 80px);
+    min-height: 600px;
     display: none;
 }
 

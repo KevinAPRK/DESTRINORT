@@ -1,0 +1,31 @@
+{
+    "components": {
+        "account_widget": {
+            "welcome": "Bienvenido"
+        }
+    },
+    "actions": {
+        "create": "Crear",
+        "edit": "Editar",
+        "view": "Ver",
+        "delete": "Eliminar",
+        "cancel": "Cancelar",
+        "save": "Guardar",
+        "filter": "Filtrar",
+        "search": "Buscar"
+    },
+    "navigation": {
+        "label": "Navegación"
+    },
+    "pages": {
+        "dashboard": {
+            "title": "Dashboard"
+        }
+    },
+    "widgets": {
+        "account": {
+            "heading": "Cuenta",
+            "welcome": "Bienvenido"
+        }
+    }
+}
