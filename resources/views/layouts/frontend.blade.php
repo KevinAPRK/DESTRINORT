@@ -8,6 +8,11 @@
     <meta name="keywords" content="@yield('meta_keywords', $configuraciones['site_keywords'] ?? 'productos cabello, peluquería, hair care')">
     <title>@yield('title', 'DISTRINORT - Distribuidora de Productos para el Cuidado del Cabello')</title>
     
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/logoicono.ico') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/logoicono.ico') }}">
+    <link rel="apple-touch-icon" href="{{ asset('images/logoicono.ico') }}">
+    
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -54,11 +59,7 @@
             <div class="container">
                 <div class="navbar-content">
                     <a href="{{ route('home') }}" class="navbar-brand">
-                        @if(isset($configuraciones['logo']))
-                        <img src="{{ Storage::url($configuraciones['logo']) }}" alt="DISTRINORT">
-                        @else
-                        <span>DISTRINORT</span>
-                        @endif
+                        <img src="{{ asset('images/Logo.jpg') }}" alt="DISTRINORT" style="height: 50px; width: auto;">
                     </a>
                     
                     <button class="navbar-toggle" id="navbarToggle">

@@ -287,15 +287,9 @@
 <!-- Marcas Section -->
 <section class="marcas-section">
     <div class="container">
-        <div class="section-header section-header-modern">
-            <span class="section-badge">Nuestras Alianzas</span>
-            <h2>DESCUBRE DISTRINORT</h2>
+        <div class="section-header">
+            <h2>MARCAS DESTACADAS</h2>
             <p>Trabajamos con las mejores marcas del mercado</p>
-            <div class="section-divider">
-                <span class="divider-dot"></span>
-                <span class="divider-line"></span>
-                <span class="divider-dot"></span>
-            </div>
         </div>
         
         <div class="marcas-grid marcas-grid-modern">
@@ -344,15 +338,9 @@
 @if($productosDestacados->count() > 0)
 <section class="productos-section">
     <div class="container">
-        <div class="section-header section-header-modern">
-            <span class="section-badge section-badge-primary">Destacados</span>
+        <div class="section-header">
             <h2>PRODUCTOS DESTACADOS</h2>
             <p>Los productos más populares de nuestro catálogo</p>
-            <div class="section-divider">
-                <span class="divider-dot"></span>
-                <span class="divider-line"></span>
-                <span class="divider-dot"></span>
-            </div>
         </div>
         
         <div class="productos-grid">
@@ -657,15 +645,9 @@
 @if($resenas->count() > 0)
 <section class="testimonios-section">
     <div class="container">
-        <div class="section-header section-header-modern">
-            <span class="section-badge section-badge-success">Testimonios</span>
+        <div class="section-header">
             <h2>LO QUE DICEN NUESTROS CLIENTES</h2>
             <p>Testimonios reales de quienes confían en nosotros</p>
-            <div class="section-divider">
-                <span class="divider-dot"></span>
-                <span class="divider-line"></span>
-                <span class="divider-dot"></span>
-            </div>
         </div>
         
         <div class="testimonios-grid">
@@ -698,15 +680,9 @@
 @if($articulos->count() > 0)
 <section class="blog-section">
     <div class="container">
-        <div class="section-header section-header-modern">
-            <span class="section-badge section-badge-info">Blog</span>
+        <div class="section-header">
             <h2>MUNDO DISTRINORT</h2>
             <p>Artículos, consejos y novedades sobre el cuidado del cabello</p>
-            <div class="section-divider">
-                <span class="divider-dot"></span>
-                <span class="divider-line"></span>
-                <span class="divider-dot"></span>
-            </div>
         </div>
         
         <div class="blog-grid">
@@ -834,7 +810,7 @@
         }
     }
     
-    // Auto-scroll del carrusel (opcional)
+    // Auto-scroll del carrusel cada 2 segundos
     let carouselAutoScroll = setInterval(() => {
         const container = document.getElementById('carouselContainer');
         const maxScroll = container.scrollWidth - container.clientWidth;
@@ -845,7 +821,7 @@
         } else {
             scrollCarousel('next');
         }
-    }, 5000);
+    }, 2000);
     
     // Pausar auto-scroll al hover
     const carouselContainer = document.getElementById('carouselContainer');
@@ -864,7 +840,7 @@
                 } else {
                     scrollCarousel('next');
                 }
-            }, 5000);
+            }, 2000);
         });
     }
 </script>
