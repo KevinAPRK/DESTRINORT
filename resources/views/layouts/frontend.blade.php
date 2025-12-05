@@ -55,7 +55,6 @@
                             </ul>
                         </li>
                         <li><a href="{{ route('blog') }}" class="{{ request()->routeIs('blog') || request()->routeIs('articulo.detalle') ? 'active' : '' }}">Blog</a></li>
-                        <li><a href="#contacto">Contacto</a></li>
                     </ul>
                     
                     <button class="btn-whatsapp-header" onclick="openWhatsApp()">
@@ -112,9 +111,8 @@
                 <div class="footer-col">
                     <h4>Contacto</h4>
                     <ul class="footer-contact">
-                        <li><i class="fas fa-map-marker-alt"></i> {{ $configuraciones['direccion'] ?? '' }}</li>
+                        <li><i class="fas fa-map-marker-alt"></i> MZA. B LOTE. 20 URB. 21 DE AGOSTO</li>
                         <li><i class="fas fa-phone"></i> {{ $configuraciones['telefono'] ?? '' }}</li>
-                        <li><i class="fas fa-envelope"></i> {{ $configuraciones['email'] ?? '' }}</li>
                     </ul>
                 </div>
             </div>

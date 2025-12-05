@@ -4,6 +4,248 @@
 @section('meta_description', $producto->descripcion_corta ?? $producto->nombre)
 @section('meta_keywords', $producto->meta_keywords ?? $producto->nombre)
 
+@push('styles')
+<style>
+    .producto-detalle-section {
+        padding: 40px 0;
+    }
+    
+    .producto-galeria {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .galeria-main {
+        width: 100%;
+        max-width: 400px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
+        border-radius: 16px;
+        padding: 30px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .galeria-main::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(45deg, 
+            transparent 30%, 
+            rgba(37, 99, 235, 0.02) 50%, 
+            transparent 70%);
+        animation: shimmer 4s infinite;
+    }
+    
+    @keyframes shimmer {
+        0%, 100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+        50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    }
+    
+    .galeria-main img {
+        width: 100%;
+        max-width: 350px;
+        height: auto;
+        object-fit: contain;
+        border-radius: 12px;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .galeria-thumbnails {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .galeria-thumbnails img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 12px;
+        cursor: pointer;
+        border: 3px solid transparent;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+    
+    .galeria-thumbnails img:hover {
+        border-color: #2563eb;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+    }
+    
+    .producto-detalle-info h1 {
+        font-size: 2.2rem;
+        font-weight: 800;
+        line-height: 1.3;
+        margin-bottom: 20px;
+        color: #1f2937;
+    }
+    
+    .producto-badges {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+    }
+    
+    .badge {
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    
+    .badge-nuevo {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        color: white;
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    }
+    
+    .badge-oferta {
+        background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        color: white;
+        box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+    }
+    
+    .badge-destacado {
+        background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        color: white;
+        box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+    }
+    
+    .producto-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin: 20px 0;
+        padding: 20px;
+        background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
+        border-radius: 12px;
+        border-left: 4px solid #2563eb;
+    }
+    
+    .producto-meta span {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 1rem;
+        color: #6b7280;
+    }
+    
+    .producto-meta strong {
+        color: #1f2937;
+        font-weight: 600;
+    }
+    
+    .producto-meta a {
+        color: #2563eb;
+        font-weight: 600;
+        transition: color 0.3s ease;
+    }
+    
+    .producto-meta a:hover {
+        color: #1e40af;
+        text-decoration: underline;
+    }
+    
+    .producto-precio-detalle {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        margin: 25px 0;
+        padding: 20px;
+        background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+        border-radius: 12px;
+    }
+    
+    .precio-actual {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #2563eb;
+    }
+    
+    .precio-anterior {
+        font-size: 1.5rem;
+        color: #9ca3af;
+        text-decoration: line-through;
+    }
+    
+    .precio-ahorro {
+        padding: 6px 14px;
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        color: white;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    }
+    
+    .producto-descripcion-corta,
+    .producto-descripcion-larga {
+        font-size: 1.05rem;
+        line-height: 1.8;
+        color: #4b5563;
+        margin-bottom: 20px;
+    }
+    
+    .producto-stock {
+        margin: 20px 0;
+    }
+    
+    .stock-disponible {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 20px;
+        background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+        color: #065f46;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 0.95rem;
+    }
+    
+    .stock-agotado {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 20px;
+        background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+        color: #991b1b;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 0.95rem;
+    }
+    
+    @media (max-width: 768px) {
+        .producto-detalle-info h1 {
+            font-size: 1.7rem;
+        }
+        
+        .precio-actual {
+            font-size: 2rem;
+        }
+        
+        .precio-anterior {
+            font-size: 1.2rem;
+        }
+    }
+</style>
+@endpush
+
 @section('content')
 <!-- Breadcrumb -->
 <section class="breadcrumb-section">

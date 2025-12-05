@@ -3,6 +3,124 @@
 @section('title', $marca->nombre . ' - DISTRINORT')
 @section('meta_description', $marca->descripcion ?? 'Productos ' . $marca->nombre)
 
+@push('styles')
+<style>
+    .marca-header {
+        padding: 60px 0;
+        background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+    }
+    
+    .marca-header-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 50px;
+        flex-wrap: wrap;
+    }
+    
+    .marca-logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 280px;
+        height: 280px;
+        background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        position: relative;
+        overflow: hidden;
+        transition: all 0.4s ease;
+    }
+    
+    .marca-logo::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(45deg, 
+            transparent 30%, 
+            rgba(37, 99, 235, 0.03) 50%, 
+            transparent 70%);
+        transform: rotate(45deg);
+        animation: shimmer 3s infinite;
+    }
+    
+    @keyframes shimmer {
+        0%, 100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+        50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    }
+    
+    .marca-logo:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 30px 80px rgba(37, 99, 235, 0.15);
+    }
+    
+    .marca-logo img {
+        width: 100%;
+        max-width: 220px;
+        height: auto;
+        object-fit: contain;
+        position: relative;
+        z-index: 1;
+        transition: transform 0.3s ease;
+    }
+    
+    .marca-logo:hover img {
+        transform: scale(1.05);
+    }
+    
+    .marca-info {
+        flex: 1;
+        max-width: 600px;
+        text-align: center;
+    }
+    
+    .marca-info h1 {
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 20px;
+        background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    
+    .marca-info p {
+        font-size: 1.2rem;
+        color: #6b7280;
+        line-height: 1.8;
+    }
+    
+    @media (max-width: 768px) {
+        .marca-header-content {
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .marca-logo {
+            width: 220px;
+            height: 220px;
+            padding: 20px;
+        }
+        
+        .marca-logo img {
+            max-width: 180px;
+        }
+        
+        .marca-info h1 {
+            font-size: 2rem;
+        }
+        
+        .marca-info p {
+            font-size: 1rem;
+        }
+    }
+</style>
+@endpush
+
 @section('content')
 <!-- Breadcrumb -->
 <section class="breadcrumb-section">

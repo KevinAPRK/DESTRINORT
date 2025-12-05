@@ -58,7 +58,9 @@ class AdminPanelProvider extends PanelProvider
                 DispatchServingFilamentEvent::class,
             ])
             ->plugins([
-                FilamentShieldPlugin::make(),
+                FilamentShieldPlugin::make()
+                    ->navigationLabel('Roles')
+                    ->navigationGroup('Usuarios'),
             ])
             ->authMiddleware([
                 Authenticate::class,

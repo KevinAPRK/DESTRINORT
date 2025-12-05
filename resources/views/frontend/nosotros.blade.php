@@ -28,7 +28,7 @@
                 </p>
             </div>
             <div class="about-image">
-                <img src="{{ asset('images/about-placeholder.jpg') }}" alt="Sobre DISTRINORT">
+                <img src="{{ asset('images/Logo.jpg') }}" alt="Sobre DISTRINORT">
             </div>
         </div>
 
